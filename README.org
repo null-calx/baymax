@@ -1,0 +1,6 @@
+#+TITLE: emacs config
+#+AUTHOR: calx
+
+goto file [[./config.org][config.org]], init.el intializes it
+
+run =git clone https://github.com/null-calx/baymax ~/.emacs.d=

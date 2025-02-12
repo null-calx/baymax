@@ -1,0 +1,91 @@
+* Emacs Config File
+
+** Startup
+
+#+BEGIN_SRC emacs-lisp
+  (setq inhibit-startup-message t)
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+#+END_SRC
+
+** Behaviour
+
+#+BEGIN_SRC emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+  (electric-pair-mode 1)
+  (global-display-line-numbers-mode t)
+  (setq display-line-numbers-type 'relative)
+  (setq ring-bell-function 'ignore)
+  (setq make-backup-files nil)
+  (when window-system
+    (global-prettify-symbols-mode t))
+#+END_SRC
+
+** Packages
+
+*** org-mode
+
+#+BEGIN_SRC emacs-lisp
+  ;; org-structure-template-alist
+  (setq org-structure-template-alist
+	(mapcar (lambda (entry) (if (member (car entry) '("s" "e" "c" "q"))
+			       (cons (car entry) (upcase (cdr entry)))
+			     entry))
+		org-structure-template-alist))
+
+  ;; emacs-lisp
+  (setq org-structure-template-alist
+	(cons '("L" . "SRC emacs-lisp") org-structure-template-alist))
+#+END_SRC
+
+*** ansi-term
+
+#+BEGIN_SRC emacs-lisp
+  (defadvice ansi-term (before force-bash)
+    (interactive (list "/bin/zsh")))
+  (ad-activate 'ansi-term)
+#+END_SRC
+
+*** ido
+
+#+BEGIN_SRC emacs-lisp
+  (setq ido-enable-flex-matching nil)
+  (setq ido-create-new-buffer 'always)
+  (setq ido-everywhere t)
+  (setq ido-decorations
+	'("{ " " }" " | " " | ..." "[ " " ]"
+	  " [No match]"
+	  " [Matched]"
+	  " [Not readable]"
+	  " [Too big]"
+	  " [Confirm]"))
+  (ido-mode 1)
+#+END_SRC
+
+*** which-key
+
+#+BEGIN_SRC emacs-lisp
+  (which-key-mode)
+#+END_SRC
+
+*** slime/sly
+
+#+BEGIN_SRC emacs-lisp
+  ;; if using slime
+  ;; (load (expand-file-name "~/quicklisp/slime-helper.el"))
+  (remove-hook 'lisp-mode-hook 'slime-lisp-mode-hook)
+  (setq inferior-lisp-program "/usr/bin/sbcl")
+#+END_SRC
+
+*** c-mode
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default c-basic-offset 4)
+#+END_SRC
+
+*** recompile
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c m") 'recompile)
+#+END_SRC
