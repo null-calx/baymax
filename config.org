@@ -1,45 +1,77 @@
-* Emacs Config File
+#+TITLE: Emacs Configuration File
 
-** Startup
+* Basic Configuration
+
+** startup
 
 #+BEGIN_SRC emacs-lisp
   (setq inhibit-startup-message t)
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (scroll-bar-mode -1)
+  (tab-bar-mode 1)
 #+END_SRC
 
-** Behaviour
+** behaviour
 
 #+BEGIN_SRC emacs-lisp
   (defalias 'yes-or-no-p 'y-or-n-p)
   (electric-pair-mode 1)
+  (line-number-mode 1)
+  (column-number-mode 1)
   (global-display-line-numbers-mode t)
+  (display-time-mode 1)
+  (setq display-time-24hr-format t)
   (setq display-line-numbers-type 'relative)
   (setq ring-bell-function 'ignore)
   (setq make-backup-files nil)
+  (setq scroll-conservatively 100)
   (when window-system
     (global-prettify-symbols-mode t))
 #+END_SRC
 
-** Packages
+** not sure if i want to keep these
 
-*** org-mode
+#+BEGIN_SRC emacs-lisp
+  (setq make-backup-files nil)
+  (setq auto-save-default nil)
+  (when window-system
+    (global-hl-line-mode t))
+#+END_SRC
+
+** shortcuts i don't want to forget
+
+- ~F3~ to start recording a macro
+- ~F4~ to stop recording a macro or replay the latest macro
+
+* Built-in Packages
+
+** org-mode
 
 #+BEGIN_SRC emacs-lisp
   ;; org-structure-template-alist
   (setq org-structure-template-alist
-	(mapcar (lambda (entry) (if (member (car entry) '("s" "e" "c" "q"))
-			       (cons (car entry) (upcase (cdr entry)))
-			     entry))
-		org-structure-template-alist))
+  	(mapcar (lambda (entry) (if (member (car entry) '("s" "e" "c" "q"))
+  			       (cons (car entry) (upcase (cdr entry)))
+  			     entry))
+  		org-structure-template-alist))
 
   ;; emacs-lisp
   (setq org-structure-template-alist
-	(cons '("L" . "SRC emacs-lisp") org-structure-template-alist))
+  	(cons '("L" . "SRC emacs-lisp") org-structure-template-alist))
+
+  (setq org-src-window-setup 'current-window)
+  (setq org-ellipsis " ")
+  (add-hook 'org-mode-hook 'org-indent-mode)
+  (add-hook 'org-mode-hook 'auto-fill-mode)
 #+END_SRC
 
-*** ansi-term
+*** shortcuts i don't want to forget
+
+- ~C-c C-,~ to create code blocks
+- ~C-c '~ in code block
+
+** ansi-term
 
 #+BEGIN_SRC emacs-lisp
   (defadvice ansi-term (before force-bash)
@@ -47,29 +79,51 @@
   (ad-activate 'ansi-term)
 #+END_SRC
 
-*** ido
+** term
+
+#+BEGIN_SRC emacs-lisp
+  (defadvice term (before force-bash)
+    (interactive (list "/bin/zsh")))
+  (ad-activate 'term)
+#+END_SRC
+
+** ido
 
 #+BEGIN_SRC emacs-lisp
   (setq ido-enable-flex-matching nil)
   (setq ido-create-new-buffer 'always)
   (setq ido-everywhere t)
   (setq ido-decorations
-	'("{ " " }" " | " " | ..." "[ " " ]"
-	  " [No match]"
-	  " [Matched]"
-	  " [Not readable]"
-	  " [Too big]"
-	  " [Confirm]"))
+  	'("{ " " }" " | " " | ..." "[ " " ]"
+  	  " [No match]"
+  	  " [Matched]"
+  	  " [Not readable]"
+  	  " [Too big]"
+  	  " [Confirm]"))
   (ido-mode 1)
 #+END_SRC
 
-*** which-key
+** c-mode
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default c-basic-offset 4)
+#+END_SRC
+
+** recompile
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c m") 'recompile)
+#+END_SRC
+
+* External Packages
+
+** which-key
 
 #+BEGIN_SRC emacs-lisp
   (which-key-mode)
 #+END_SRC
 
-*** slime/sly
+** slime/sly
 
 #+BEGIN_SRC emacs-lisp
   ;; if using slime
@@ -78,14 +132,23 @@
   (setq inferior-lisp-program "/usr/bin/sbcl")
 #+END_SRC
 
-*** c-mode
+** avy
 
 #+BEGIN_SRC emacs-lisp
-  (setq-default c-basic-offset 4)
+  (global-set-key (kbd "M-s") 'avy-goto-char)
 #+END_SRC
 
-*** recompile
+** ace-window
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c m") 'recompile)
+  (global-set-key (kbd "M-o") 'ace-window)
+  (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l ?\;))
+#+END_SRC
+
+** company
+
+~M-x eglot~ to start LSP client
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'go-mode-hook '(lambda () (company-mode)))
 #+END_SRC
