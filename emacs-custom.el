@@ -10,9 +10,9 @@
  '(mouse-wheel-flip-direction t)
  '(mouse-wheel-tilt-scroll t)
  '(package-selected-packages
-   '(auctex cdlatex company csv-mode dockerfile-mode elcord go-mode
-	    gruber-darker-theme haskell-mode htmlize jump-char magit
-	    multiple-cursors nginx-mode popup-kill-ring
+   '(auctex cdlatex company csv-mode diminish dockerfile-mode elcord
+	    go-mode gruber-darker-theme haskell-mode htmlize jump-char
+	    magit multiple-cursors nginx-mode popup-kill-ring
 	    sage-shell-mode slime sly svelte-mode terraform-mode
 	    treemacs typescript-mode which-key yaml-mode)))
 (custom-set-faces
