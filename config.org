@@ -123,6 +123,14 @@
   (which-key-mode)
 #+END_SRC
 
+** diminish
+
+#+BEGIN_SRC emacs-lisp
+  (diminish 'which-key-mode)
+  (diminish 'company-mode)
+  (diminish 'org-indent-mode)
+#+END_SRC
+
 ** slime/sly
 
 #+BEGIN_SRC emacs-lisp
