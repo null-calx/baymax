@@ -109,9 +109,10 @@
   (setq-default c-basic-offset 4)
 #+END_SRC
 
-** recompile
+** compile/recompile
 
 #+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c C-m") 'compile)
   (global-set-key (kbd "C-c m") 'recompile)
 #+END_SRC
 
@@ -159,4 +160,20 @@
 
 #+BEGIN_SRC emacs-lisp
   (add-hook 'go-mode-hook '(lambda () (company-mode)))
+#+END_SRC
+
+** gptel
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c t") 'gptel-send)
+
+  (setq gptel-backend
+        (gptel-make-openai "OpenRouter"
+  	:host "openrouter.ai"
+  	:endpoint "/api/v1/chat/completions"
+  	:stream t
+  	:key (lambda nil (auth-source-pick-first-password
+  		     :host "openrouter.ai"
+  		     :user "apikey"))
+  	:models '("deepseek/deepseek-r1:free")))
 #+END_SRC
