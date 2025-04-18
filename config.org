@@ -64,6 +64,9 @@
   (setq org-ellipsis " ")
   (add-hook 'org-mode-hook 'org-indent-mode)
   (add-hook 'org-mode-hook 'auto-fill-mode)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((lisp . t) (js . t) (python . t) (shell . t)))
 #+END_SRC
 
 *** shortcuts i don't want to forget
