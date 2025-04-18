@@ -20,6 +20,7 @@
   (line-number-mode 1)
   (column-number-mode 1)
   (global-display-line-numbers-mode t)
+  (global-auto-revert-mode t)
   (display-time-mode 1)
   (setq display-time-24hr-format t)
   (setq display-line-numbers-type 'relative)
