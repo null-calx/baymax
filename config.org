@@ -132,6 +132,19 @@
   (setq eglot-ignored-server-capabilities '(:documentOnTypeFormattingProvider))
 #+END_SRC
 
+* Local External Packages
+
+** lean4-mode
+
+#+BEGIN_SRC emacs-lisp
+  ;; requires packages dash, lsp-mode, magit-section to work
+  ;; https://github.com/leanprover-community/lean4-mode
+
+  (add-to-list 'load-path "~/git/lean4-mode")
+  (require 'lean4-mode)
+  (setenv "PATH" (concat (getenv "PATH") ":" (getenv "HOME") "/git/lean4/build/release/stage0/bin"))
+#+END_SRC
+
 * External Packages
 
 ** which-key
