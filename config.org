@@ -47,6 +47,12 @@
 
 * Built-in Packages
 
+** diary
+
+#+BEGIN_SRC emacs-lisp
+  (setq diary-file "~/diary.gpg")
+#+END_SRC
+
 ** org-mode
 
 #+BEGIN_SRC emacs-lisp
@@ -118,6 +124,12 @@
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-c C-m") 'compile)
   (global-set-key (kbd "C-c m") 'recompile)
+#+END_SRC
+
+** eglot
+
+#+BEGIN_SRC emacs-lisp
+  (setq eglot-ignored-server-capabilities '(:documentOnTypeFormattingProvider))
 #+END_SRC
 
 * External Packages
