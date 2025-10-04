@@ -40,6 +40,13 @@
     (global-hl-line-mode t))
 #+END_SRC
 
+** styling
+
+#+BEGIN_SRC emacs-lisp
+  (c-add-style "sane-c" '((c-basic-offset . 4) (tab-width . 4)))
+  (add-to-list 'c-default-style '(c-mode . "sane-c") t)
+#+END_SRC
+
 ** shortcuts i don't want to forget
 
 - ~F3~ to start recording a macro
@@ -111,12 +118,6 @@
   	  " [Too big]"
   	  " [Confirm]"))
   (ido-mode 1)
-#+END_SRC
-
-** c-mode
-
-#+BEGIN_SRC emacs-lisp
-  (setq-default c-basic-offset 4)
 #+END_SRC
 
 ** compile/recompile
