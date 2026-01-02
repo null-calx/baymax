@@ -11,11 +11,12 @@
  '(mouse-wheel-tilt-scroll t)
  '(package-selected-packages
    '(ace-window auctex cdlatex cmake-mode company csv-mode diminish
-		dired-sidebar dockerfile-mode elcord go-mode gptel
-		haskell-mode htmlize jump-char lsp-mode magit
-		multiple-cursors nginx-mode popup-kill-ring
-		sage-shell-mode slime sly svelte-mode terraform-mode
-		treemacs typescript-mode which-key yaml-mode)))
+                dired-sidebar dockerfile-mode elcord elpy go-mode
+                gptel haskell-mode hideshowvis htmlize jump-char
+                lsp-mode magit multiple-cursors neotree nginx-mode
+                php-mode popup-kill-ring sage-shell-mode slime sly
+                svelte-mode terraform-mode typescript-mode which-key
+                yaml-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
