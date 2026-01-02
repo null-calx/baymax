@@ -43,8 +43,16 @@
 ** styling
 
 #+BEGIN_SRC emacs-lisp
+  (setq-default indent-tabs-mode nil)
   (c-add-style "sane-c" '((c-basic-offset . 4) (tab-width . 4)))
   (add-to-list 'c-default-style '(c-mode . "sane-c") t)
+#+END_SRC
+
+** extras
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "~/.emacs.d/local/")
+  (require 'fasm-mode)
 #+END_SRC
 
 ** shortcuts i don't want to forget
@@ -195,15 +203,45 @@
 ** gptel
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c t") 'gptel-send)
+  (global-set-key (kbd "C-c t") 'gptel-menu)
 
-  (setq gptel-backend
-        (gptel-make-openai "OpenRouter"
-  	:host "openrouter.ai"
-  	:endpoint "/api/v1/chat/completions"
-  	:stream t
-  	:key (lambda nil (auth-source-pick-first-password
-  		     :host "openrouter.ai"
-  		     :user "apikey"))
-  	:models '("deepseek/deepseek-r1:free")))
+  (setq gptel-model 'gpt-5-mini
+        gptel--known-backends nil
+        baymax-gptel-github-copilot (gptel-make-gh-copilot "Copilot")
+        baymax-gptel-openai (gptel-make-openai "OpenAI"
+                              :host "api.openapi.com"
+                              :key (lambda nil (auth-source-pick-first-password
+                                           :host "openai.com"
+                                           :user "apikey"))
+                              :models '("gpt-3.5-turbo" "gpt-4o"
+                                        "gpt-4o-mini" "o1" "o3-mini"
+                                        "o3" "o4-mini"  "gpt-4.1"
+                                        "gpt-4.1-mini" "gpt-4.1-nano"
+                                        "gpt-5" "gpt-5-mini" "gpt-5-nano"
+                                        "gpt-5.1" "gpt-5.2"))
+        gptel-backend baymax-gptel-github-copilot)
+#+END_SRC
+
+** neotree
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c n") 'neotree)
+  (global-set-key (kbd "C-c N") 'neotree-toggle)
+
+  (with-eval-after-load 'neotree
+    (with-eval-after-load 'ace-window
+      (add-to-list 'aw-ignored-buffers neo-buffer-name)))
+
+  (add-hook 'neotree-mode-hook
+            (lambda () (display-line-numbers-mode -1)))
+#+END_SRC
+
+** hideshowvis
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c /") 'hideshowvis-minor-mode)
+
+  (with-eval-after-load 'hideshowvis
+    (define-fringe-bitmap 'hideshowvis-hideable-marker [#x66 #x3c #x18])
+    (define-fringe-bitmap 'hideshowvis-hidden-marker [#x18 #x3c #x66]))
 #+END_SRC
