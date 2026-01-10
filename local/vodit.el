@@ -114,6 +114,6 @@
       (add-hook 'org-ctrl-c-ctrl-c-hook 'vodit--handler nil t)
     (remove-hook 'org-ctrl-c-ctrl-c-hook 'vodit--handler t)))
 
-(provide 'vodit-mode)
+(provide 'vodit)
 
 ;;; vodit.el ends here
