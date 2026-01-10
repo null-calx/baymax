@@ -1,5 +1,6 @@
-#+TITLE: emacs config
 #+AUTHOR: calx
+
+* baymax
 
 goto file [[./config.org][config.org]], init.el intializes it
 
