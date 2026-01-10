@@ -13,6 +13,30 @@
 ;; A minor mode to run org src blocks directly on local or remote
 ;; systems.
 
+;;; Usage:
+
+;; To use vodit mode in any org file, enable vodit mode by running
+;; "M-x vodit-mode" and marking any source block with ":vodit t"
+;; header argument. Although, you also need to provide at minimum a
+;; host to run the script/code on. This can either be provided using
+;; ":vodit-remote-host <host>" header argument or by setting the org
+;; property "vodit-remote-host" of any parent heading containing the
+;; src block.
+
+;; Note: if provided <host> is "localhost", then the script/code will
+;; be executed on local system.
+
+;; Note: header arguments will override any property values
+
+;; Similarly, you can also configure the user, port, root (whether to
+;; run the script/code as root user, it is only enabled for remote
+;; hosts), and interpreter (shell/interpreter to execute the
+;; script/code on). Using the following arguments/properties:
+;;   - vodit-remote-user
+;;   - vodit-remote-port (default 22)
+;;   - vodit-remote-root
+;;   - vodit-interpreter (default "bash")
+
 (require 'org)
 
 (defvar vodit--temp-buffer-name "*vodit-output*")
