@@ -1,12 +1,21 @@
+;;; vodit.el --- minor mode to run org src blocks directly on local or remote systems
+
+;; This is free and unencumbered software released into the public domain.
+;; For more information, please refer to <https://unlicense.org/>
+
+;; Author: calx
+;; URL: https://raw.githubusercontent.com/null-calx/baymax/refs/heads/master/local/vodit.el
+;; URL: https://istaroth.org/files/vodit.el
+;; Version: 1.0.0
+
+;;; Commentary:
+
+;; A minor mode to run org src blocks directly on local or remote
+;; systems.
+
 (require 'org)
 
 (defvar vodit--temp-buffer-name "*vodit-output*")
-
-;; vodit-remote-host nil
-;; vodit-remote-port 22
-;; vodit-remote-root nil
-;; vodit-remote-user nil
-;; vodit-interpreter bash
 
 (defmacro vodit--with-tmpfile (arguments &rest body)
   (cl-destructuring-bind (tmpfile-var prefix &optional dir-flag suffix text)
@@ -106,3 +115,5 @@
     (remove-hook 'org-ctrl-c-ctrl-c-hook 'vodit--handler t)))
 
 (provide 'vodit-mode)
+
+;;; vodit.el ends here

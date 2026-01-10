@@ -1,10 +1,11 @@
 ;;; fasm-mode.el --- FASM major mode
 
 ;; This is free and unencumbered software released into the public domain.
+;; For more information, please refer to <https://unlicense.org/>
 
 ;; Author: calx
-;; URL: https://github.com/null-calx/fasm-mode.el
-;; URL: https://istaroth.xyz/files/fasm-mode.el
+;; URL: https://raw.githubusercontent.com/null-calx/baymax/refs/heads/master/local/fasm-mode.el
+;; URL: https://istaroth.org/files/fasm-mode.el
 ;; Version: 1.0.0
 
 ;;; Commentary:
