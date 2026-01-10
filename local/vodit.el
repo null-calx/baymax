@@ -50,7 +50,7 @@
               (interpreter (plist-get vodit-args :interpreter)))
     (cond
      ((string-equal host "localhost")
-      (vodit--with-tmpfile (src-content "vodit-src-content" nil ".txt" body)
+      (vodit--with-tmpfile (src-content "vodit-src-content-" nil ".txt" body)
          (call-process "env" 
                        src-content
                        vodit--temp-buffer-name
@@ -58,7 +58,7 @@
                        "-S"
                        interpreter)))
      (t
-      (vodit--with-tmpfile (src-content "vodit-src-content" nil ".txt" body)
+      (vodit--with-tmpfile (src-content "vodit-src-content-" nil ".txt" body)
          (apply #'call-process 
                 "ssh"
                 src-content
