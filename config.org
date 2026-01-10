@@ -232,6 +232,7 @@
     (with-eval-after-load 'ace-window
       (add-to-list 'aw-ignored-buffers neo-buffer-name)))
 
+  (setq neo-window-width 40)
   (add-hook 'neotree-mode-hook
             (lambda () (display-line-numbers-mode -1)))
 #+END_SRC
