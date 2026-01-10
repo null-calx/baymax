@@ -4,7 +4,7 @@
 ;; For more information, please refer to <https://unlicense.org/>
 
 ;; Author: calx
-;; URL: https://raw.githubusercontent.com/null-calx/baymax/refs/heads/master/local/vodit.el
+;; URL: https://codeberg.org/null-calx/baymax/raw/branch/master/local/vodit.el
 ;; URL: https://istaroth.org/files/vodit.el
 ;; Version: 1.0.0
 
